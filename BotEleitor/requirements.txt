@@ -1,5 +1,6 @@
 asttokens==2.4.1
 beautifulsoup4==4.12.3
+botcity-email-plugin==0.1.5
 botcity-framework-base==0.4.4
 botcity-framework-web==0.9.0
 botcity-http-plugin==0.1.4
@@ -14,6 +15,7 @@ et-xmlfile==1.1.0
 exceptiongroup==1.2.2
 executing==2.1.0
 idna==3.10
+imap-tools==1.7.2
 importlib_metadata==8.5.0
 ipython==8.27.0
 jedi==0.19.1

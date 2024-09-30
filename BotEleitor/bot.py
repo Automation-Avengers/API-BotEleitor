@@ -28,9 +28,43 @@ from botcity.web import WebBot, Browser, By
 # Import for integration with BotCity Maestro SDK
 from botcity.maestro import *
 from webdriver_manager.chrome import ChromeDriverManager
+import e_mail.e_mail as e_mail
 
 # Disable errors if we are not connected to Maestro
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
+
+
+def enviar_email(api_lista_usuarios, e_mail, caminho_anexo):
+    """
+    Função para enviar e-mails com arquivo de produtos em anexo para uma lista de usuários.
+
+    Args:
+    - api_lista_usuarios: Função que retorna a lista de usuários no formato JSON.
+    - e_mail: Objeto responsável por enviar o e-mail.
+    - caminho_anexo: Caminho do arquivo PDF a ser anexado.
+    """
+    print('Enviando E-mail para a lista de usuários com o arquivo Produtos.pdf em anexo.')
+    
+    # Chama a API para obter a lista de usuários
+    retornoJSON_usuarios = api_lista_usuarios()
+    
+    # Obtém a lista de usuários a partir do retorno JSON
+    lista_produto = retornoJSON_usuarios['dados']
+    
+    # Loop para enviar o e-mail para cada usuário
+    for usuario in lista_produto:
+        destinatario = usuario['email']
+        print(f'Enviando e-mail para: {destinatario}')
+        
+        # Define o assunto e conteúdo do e-mail
+        assunto = "Lista de Produtos"
+        conteudo = "<h1>Sistema Automatizado!</h1> Em anexo, a lista de produtos."
+        
+        # Envia o e-mail com o arquivo anexo
+        e_mail.enviar_email_anexo(destinatario, assunto, conteudo, caminho_anexo)
+    
+    print('Fim do processamento...')
+
 
 
 def main():
@@ -57,8 +91,8 @@ def main():
     # Opens the BotCity website.
     bot.browse("https://www.botcity.dev")
 
-    # Implement here your logic...
-    ...
+    arq_anexo = r'C:\Users\matutino\Desktop\API-BotEleitor\BotEleitor\pdf'
+    enviar_email(api_lista_usuarios, e_mail, arq_anexo)
 
     # Wait 3 seconds before closing
     bot.wait(3000)
