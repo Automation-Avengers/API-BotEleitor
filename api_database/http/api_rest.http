@@ -1,0 +1,120 @@
+// ---------------------------------------------
+// Testar todos os serviços da API para eleitores
+// ---------------------------------------------
+
+// Inserir eleitor
+POST http://127.0.0.1:5000/eleitor
+Content-Type: application/json
+
+{
+    "cpf": "47586415864",
+    "nome": "Sabrina",
+    "data_nascimento": "2003-10-18",
+    "nome_mae": "Disilane",
+    "cep": "69099062",
+    "nro_endereco": "79",
+    "nro_titulo": "12345678901234",
+    "situacao": "Ativo",
+    "secao": "001",
+    "zona": "001",
+    "local_votacao": "Escola Municipal",
+    "endereco_votacao": "Rua das Flores, 45",
+    "bairro": "Centro",
+    "municipio_uf": "Cidade/UF",
+    "pais": "Brasil"
+}
+
+###
+
+// Listar todos os eleitores
+GET http://127.0.0.1:5000/eleitor
+Content-Type: application/json
+
+###
+
+// Obter eleitor pelo CPF
+GET http://127.0.0.1:5000/eleitor/47586415864
+Content-Type: application/json
+###
+
+// Atualizar eleitor
+PUT http://127.0.0.1:5000/eleitor
+Content-Type: application/json
+
+{
+    "cpf": "47586415864",
+    "nome": "Sabrina Ferreira",
+    "data_nascimento": "2003-10-18",
+    "nome_mae": "Disilane",
+    "cep": "69099062",
+    "nro_endereco": "79",
+    "nro_titulo": "12345678901234",
+    "situacao": "Inativo",
+    "secao": "001",
+    "zona": "001",
+    "local_votacao": "Escola Municipal",
+    "endereco_votacao": "Rua das Flores, 45",
+    "bairro": "Centro",
+    "municipio_uf": "Cidade/UF",
+    "pais": "Brasil"
+    
+}
+
+###
+
+// Deletar eleitor pelo CPF
+DELETE http://127.0.0.1:5000/eleitor/47586415864
+Content-Type: application/json
+
+
+// ---------------------------------------------
+// Testar todos os servico da api para usuario
+// ---------------------------------------------
+
+###
+// Inserir usuario
+POST http://127.0.0.1:5000/usuario
+Content-Type: application/json
+// OBS: É necessário pular uma linha, quando existir um corpo (body) 
+
+{
+    "nome": "Bruno Pereira Goncalves",
+    "login": "bruno",
+    "senha": "1234",
+    "email": "goncalves.bruno@gmail.com"
+}
+// Utiliza-se obrigatoriamente no início da linha os simbolos: ###
+// para separar uma requisção da outra. 
+###
+
+// Alterar usuario
+PUT http://127.0.0.1:5000/usuario
+Content-Type: application/json
+// OBS: É necessário pular uma linha, quando existir um corpo (body) 
+
+{
+    "id": 7,
+    "nome": "Maria Pereira Goncalves",
+    "login": "maria",
+    "senha": "777",
+    "email": "msria@gmail.com"
+}
+// Utiliza-se obrigatoriamente no início da linha os simbolos: ###
+// para separar uma requisção da outra. 
+###
+
+// Listar todos os usuários em ordem alfabética do nome
+GET http://127.0.0.1:5000/usuario 
+Content-Type: application/json
+###
+
+// Obter usuário pelo ID
+//GET http://127.0.0.1:5000/usuario/id
+GET http://127.0.0.1:5000/usuario/6
+Content-Type: application/json
+###
+
+// Deletar usuário pelo ID
+// http://127.0.0.1:5000/usuario/id
+DELETE http://127.0.0.1:5000/usuario/7
+Content-Type: application/json
